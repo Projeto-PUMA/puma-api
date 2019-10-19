@@ -5,6 +5,7 @@ const Env = use('Env')
 
 /** @type {import('@adonisjs/ignitor/src/Helpers')} */
 const Helpers = use('Helpers')
+const knextStringcase = use('knex-stringcase')
 
 module.exports = {
   /*
