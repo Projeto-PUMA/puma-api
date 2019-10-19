@@ -36,7 +36,6 @@ class RoleController {
   async store ({ request, response }) {
     const { name, description, slug } = request.only(['name', 'description', 'slug'])
     const role = await Role.create({ name, description, slug });
-    await role.save();
     return response.ok({role})
   }
 
@@ -50,18 +49,10 @@ class RoleController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-  }
+    const { id } = params;
+    const role = await Role.findOrFail(id);
 
-  /**
-   * Render a form to update an existing role.
-   * GET roles/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
+    return response.ok({ role });
   }
 
   /**
@@ -73,6 +64,13 @@ class RoleController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const { id } = params;
+    const data = request.only(['name', 'description', 'slug']);
+
+    const role = await Role.findOrFail(id);
+    await role.merge(data);
+    await role.save();
+    return response.ok({ role });
   }
 
   /**
@@ -84,6 +82,10 @@ class RoleController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const { id } = params;
+    const role = await Role.find(id);
+    await role.delete();
+    return response.noContent();
   }
 }
 
