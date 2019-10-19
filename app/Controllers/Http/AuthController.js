@@ -13,6 +13,16 @@ const moment = use('moment');
  * Resourceful controller for interacting with auths
  */
 class AuthController {
+  async login ({ request, auth, response }) {
+    const { email, password } = request.only([
+      'email', 'password'
+    ]);
+
+    const token = await auth.attempt(email, password);
+    const user = await User.findBy({ email });
+    return response.ok({ user, token });
+  }
+
   async register({ request, response }) {
     try {
       const data = request.only(['name', 'email', 'password', 'education_level', 'username', 'profession']);
