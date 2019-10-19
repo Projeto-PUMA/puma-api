@@ -7,6 +7,9 @@
 /**
  * Resourceful controller for interacting with roles
  */
+const Role = use('Role')
+const Permission = use('Permission')
+
 class RoleController {
   /**
    * Show a list of all roles.
@@ -18,18 +21,8 @@ class RoleController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-  }
-
-  /**
-   * Render a form to be used for creating a new role.
-   * GET roles/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+    const roles = await Role.all();
+    return response.ok({roles})
   }
 
   /**
@@ -41,6 +34,10 @@ class RoleController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+    const { name, description, slug } = request.only(['name', 'description', 'slug'])
+    const role = await Role.create({ name, description, slug });
+    await role.save();
+    return response.ok({role})
   }
 
   /**
