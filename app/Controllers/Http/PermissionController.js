@@ -5,14 +5,14 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
- * Resourceful controller for interacting with roles
+ * Resourceful controller for interacting with permissions
  */
-const Role = use('Role')
+const Permission = use('Permission')
 
-class RoleController {
+class PermissionController {
   /**
-   * Show a list of all roles.
-   * GET roles
+   * Show a list of all permissions.
+   * GET permissions
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -20,13 +20,13 @@ class RoleController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const roles = await Role.all();
-    return response.ok({roles})
+    const permissions = await Permission.all();
+    return response.ok({permissions})
   }
 
   /**
    * Create/save a new role.
-   * POST roles
+   * POST permissions
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -34,13 +34,13 @@ class RoleController {
    */
   async store ({ request, response }) {
     const { name, description, slug } = request.only(['name', 'description', 'slug'])
-    const role = await Role.create({ name, description, slug });
+    const role = await Permission.create({ name, description, slug });
     return response.ok({role})
   }
 
   /**
    * Display a single role.
-   * GET roles/:id
+   * GET permissions/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -49,14 +49,14 @@ class RoleController {
    */
   async show ({ params, request, response, view }) {
     const { id } = params;
-    const role = await Role.findOrFail(id);
+    const role = await Permission.findOrFail(id);
 
     return response.ok({ role });
   }
 
   /**
    * Update role details.
-   * PUT or PATCH roles/:id
+   * PUT or PATCH permissions/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -66,7 +66,7 @@ class RoleController {
     const { id } = params;
     const data = request.only(['name', 'description', 'slug']);
 
-    const role = await Role.findOrFail(id);
+    const role = await Permission.findOrFail(id);
     await role.merge(data);
     await role.save();
     return response.ok({ role });
@@ -74,7 +74,7 @@ class RoleController {
 
   /**
    * Delete a role with id.
-   * DELETE roles/:id
+   * DELETE permissions/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -82,28 +82,10 @@ class RoleController {
    */
   async destroy ({ params, request, response }) {
     const { id } = params;
-    const role = await Role.find(id);
+    const role = await Permission.find(id);
     await role.delete();
     return response.noContent();
   }
-
-  async grantPermission ({ params, request, response }) {
-    const { id } = params;
-    const { permissions } = request.only(['permissions'])
-    const role = await Role.findOrFail(id);
-    await role.permissions().attach(permissions);
-    await role.load('permissions');
-    return response.ok({ role })
-  }
-
-  async revokePermission ({ params, request, response }) {
-    const { id } = params;
-    const { permissions } = request.only(['permissions'])
-    const role = await Role.findOrFail(id);
-    await role.permissions().detach(permissions);
-    await role.load('permissions');
-    return response.ok({ role })
-  }
 }
 
-module.exports = RoleController
+module.exports = PermissionController
