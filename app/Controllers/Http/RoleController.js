@@ -8,7 +8,6 @@
  * Resourceful controller for interacting with roles
  */
 const Role = use('Role')
-const Permission = use('Permission')
 
 class RoleController {
   /**
@@ -86,6 +85,24 @@ class RoleController {
     const role = await Role.find(id);
     await role.delete();
     return response.noContent();
+  }
+
+  async grantPermission ({ params, request, response }) {
+    const { id } = params;
+    const { permissions } = request.only(['permissions'])
+    const role = await Role.findOrFail(id);
+    await role.permissions().attach(permissions);
+    await role.load('permissions');
+    return response.ok({ role })
+  }
+
+  async revokePermission ({ params, request, response }) {
+    const { id } = params;
+    const { permissions } = request.only(['permissions'])
+    const role = await Role.findOrFail(id);
+    await role.permissions().detach(permissions);
+    await role.load('permissions');
+    return response.ok({ role })
   }
 }
 

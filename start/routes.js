@@ -29,10 +29,12 @@ Route.group(() => {
     Route.get('users/:id/roles', 'UserController.showRoles');
     Route.post('users/:id/roles', 'UserController.grantRole');
     Route.delete('users/:id/roles', 'UserController.revokeRole');
-}).prefix('api/v1');
-
-Route.group(() => {
+    
     Route.resource('roles', 'RoleController').apiOnly();
+    Route.post('roles/:id/permissions', 'RoleController.grantPermission');
+    Route.delete('roles/:id/permissions', 'RoleController.revokePermission');
     Route.post('roles/:id/membership', 'RoleController.membership');
     Route.get('roles/:id/membership', 'RoleController.showMembers');
+
+    Route.resource('permissions', 'PermissionController').apiOnly();
 }).prefix('api/v1');
