@@ -1,11 +1,16 @@
-'use strict'
+/* eslint-disable no-unused-vars */
+
+'use strict';
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
+/** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
  * Resourceful controller for interacting with users
  */
+const User = use('App/Models/User');
+
 class UserController {
   /**
    * Show a list of all users.
@@ -17,17 +22,8 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-  }
-
-  /**
-   * Create/save a new user.
-   * POST users
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+    const users = await User.all();
+    return response.ok({ users });
   }
 
   /**
@@ -39,7 +35,11 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show ({ params, request, response }) {
+    const { id } = params;
+    const user = await User.findOrFail(id);
+
+    return response.ok({ user });
   }
 
   /**
@@ -51,6 +51,13 @@ class UserController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const { id } = params;
+    const data = request.only(['username', 'name', 'email', 'profession', 'education_level']);
+
+    const user = await User.findOrFail(id);
+    await user.merge(data);
+    await user.save();
+    return response.ok({ user });
   }
 
   /**
@@ -61,8 +68,12 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response }) {
+    const { id } = params;
+    const user = await User.find(id);
+    await user.delete();
+    return response.noContent();
   }
 }
 
-module.exports = UserController
+module.exports = UserController;
