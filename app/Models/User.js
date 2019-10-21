@@ -38,6 +38,14 @@ class User extends Model {
   tokens () {
     return this.hasMany('App/Models/Token')
   }
+
+  companies() {
+    return this.belongsToMany('App/Models/Company')
+  }
+
+  projects() {
+    return this.hasMany('App/Models/Project')
+  }
   
   static get traits () {
     return [
