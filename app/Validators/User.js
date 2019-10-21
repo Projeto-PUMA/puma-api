@@ -26,12 +26,6 @@ class User {
   async fails (errorMessages) {
     return this.ctx.response.status(422).json({ errors: errorMessages });
   }
-  static get traits () {
-    return [
-      '@provider:Rocketseat/Acl/HasRole',
-      '@provider:Rocketseat/Acl/HasPermission'
-    ]
-  }
 }
 
 module.exports = User;

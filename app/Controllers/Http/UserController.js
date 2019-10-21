@@ -74,6 +74,30 @@ class UserController {
     await user.delete();
     return response.noContent();
   }
+
+  async grantRoles({ request, params, response }){
+    const { id } = params;
+    const { roles } = request.only(['roles'])
+    const user = await User.find(id);
+    await user.roles().attach(roles);
+    await user.load('roles');
+    return response.ok({ user })
+  }
+
+  async showRoles({ params, response }){
+    const { id } = params;
+    const user = await User.query().where({id}).with('roles').fetch();
+    return response.ok({ user });
+  }
+
+  async revokeRoles({ request, params, response }){
+    const { id } = params;
+    const { roles } = request.only(['roles'])
+    const user = await User.find(id);
+    await user.roles().detach(roles);
+    await user.load('roles');
+    return response.ok({ user })
+  }
 }
 
 module.exports = UserController;
