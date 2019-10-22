@@ -34,7 +34,7 @@ class AuthController {
         type: 'validate-register'
       });
       await Event.fire('auth::register', { name: user.name, email: user.email, token });
-      return response.ok({token});
+      return response.ok({});
     }
     catch (error) {
       return error;

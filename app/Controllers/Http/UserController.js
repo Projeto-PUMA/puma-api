@@ -86,7 +86,8 @@ class UserController {
 
   async showRoles({ params, response }){
     const { id } = params;
-    const user = await User.query().where({id}).with('roles').fetch();
+    const user = await User.findOrFail(id);
+    await user.load('roles');
     return response.ok({ user });
   }
 

@@ -9,8 +9,8 @@ class ProjectSchema extends Schema {
       table.increments()
       table.string('title').notNullable();
       table.text('description').notNullable();
-      table.string('attachment');
-      table.enu('status', ['enviado', 'aguardando triagem', 'em triagem', 'atribuído', 'em andamento', 'finalizado']).notNullable();
+      table.string('attachment_url');
+      table.enu('status', ['aguardando triagem', 'em triagem', 'atribuído', 'em andamento', 'finalizado']).defaultTo('aguardando triagem').notNullable();
       table.integer('user_id').unsigned().index();
       table.foreign('user_id').references('id').inTable('users').onDelete('cascade')
       table.timestamps();

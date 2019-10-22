@@ -29,7 +29,10 @@ Route.group(() => {
     Route.get('users/:id/roles', 'UserController.showRoles');
     Route.post('users/:id/roles', 'UserController.grantRoles');
     Route.delete('users/:id/roles', 'UserController.revokeRoles');
-    
+
+    Route.resource('projects', 'ProjectController').apiOnly();
+    Route.put('projects/:id/status', 'ProjectController.updateStatus');
+
     Route.resource('roles', 'RoleController').apiOnly();
     Route.post('roles/:id/permissions', 'RoleController.grantPermissions');
     Route.delete('roles/:id/permissions', 'RoleController.revokePermissions');
