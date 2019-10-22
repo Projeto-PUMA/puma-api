@@ -19,8 +19,8 @@ class RoleController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-    const roles = await Role.all();
+  async index ({ request, response }) {
+    const roles = await Roles.query().with('permissions').fetch();
     return response.ok({roles})
   }
 
@@ -49,8 +49,7 @@ class RoleController {
    */
   async show ({ params, request, response, view }) {
     const { id } = params;
-    const role = await Role.findOrFail(id);
-
+    const role = await Roles.query().where({ id }).with('permissions').fetch();
     return response.ok({ role });
   }
 
@@ -87,7 +86,7 @@ class RoleController {
     return response.noContent();
   }
 
-  async grantPermission ({ params, request, response }) {
+  async grantPermissions ({ params, request, response }) {
     const { id } = params;
     const { permissions } = request.only(['permissions'])
     const role = await Role.findOrFail(id);
@@ -96,7 +95,7 @@ class RoleController {
     return response.ok({ role })
   }
 
-  async revokePermission ({ params, request, response }) {
+  async revokePermissions ({ params, request, response }) {
     const { id } = params;
     const { permissions } = request.only(['permissions'])
     const role = await Role.findOrFail(id);
