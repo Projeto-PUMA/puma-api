@@ -14,7 +14,7 @@ class UserSchema extends Schema {
       table.enu('education_level', ['superior completo', 'superior incompleto', 'medio completo', 'medio incompleto', 'fundamental completo', 'fundamental incompleto']).notNullable(),
       table.string('profession').notNullable()
       table.boolean('account_status').defaultTo(false)
-      table.timestamps()
+      table.timestamps(true, true)
     })
   }
 

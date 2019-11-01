@@ -9,7 +9,7 @@ class PermissionSchema extends Schema {
       table.string('slug').notNullable().unique()
       table.string('name').notNullable().unique()
       table.text('description').nullable()
-      table.timestamps()
+      table.timestamps(true, true)
     })
   }
 

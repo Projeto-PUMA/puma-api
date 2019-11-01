@@ -19,7 +19,7 @@ class ProjectController {
   }
 
   async store ({ request, response }) {
-    const data = request.only(['title', 'description', 'attachment_url', 'user_id', 'project_category_id']);
+    const data = request.only(['title', 'description', 'attachment_url', 'user_id', 'psp_id']);
     const project = await Project.create(data);
     await Event.fire('project::created::owner', project);
     await Event.fire('project::created::log', project);

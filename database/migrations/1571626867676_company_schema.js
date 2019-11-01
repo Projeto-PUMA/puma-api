@@ -10,7 +10,7 @@ class CompanySchema extends Schema {
       table.string('registered_number')
       table.string('legal_name')
       table.string('trade_name')
-      table.timestamps()
+      table.timestamps(true, true)
     })
   }
 

@@ -13,7 +13,7 @@ class ProjectSchema extends Schema {
       table.enu('status', ['aguardando triagem', 'em triagem', 'atribuído', 'em andamento', 'finalizado']).defaultTo('aguardando triagem').notNullable();
       table.integer('user_id').unsigned().index();
       table.foreign('user_id').references('id').inTable('users').onDelete('cascade')
-      table.timestamps();
+      table.timestamps(true, true)
     })
   }
 

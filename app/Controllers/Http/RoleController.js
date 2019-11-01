@@ -10,7 +10,7 @@
 const Role = use('Role')
 
 class RoleController {
-  async index ({ request, response }) {
+  async index ({ response }) {
     const roles = await Role.query().with('permissions').fetch();
     return response.ok({roles})
   }
@@ -21,7 +21,7 @@ class RoleController {
     return response.ok({role})
   }
 
-  async show ({ params, request, response, view }) {
+  async show ({ params, response }) {
     const { id } = params;
     const role = await Role.query().where({ id }).with('permissions').first();
     return response.ok({ role });
@@ -37,7 +37,7 @@ class RoleController {
     return response.ok({ role });
   }
 
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response }) {
     const { id } = params;
     const role = await Role.find(id);
     await role.delete();

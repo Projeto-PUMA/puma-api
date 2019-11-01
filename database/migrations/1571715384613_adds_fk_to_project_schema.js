@@ -6,14 +6,14 @@ const Schema = use('Schema')
 class AddsFkToProjectSchema extends Schema {
   up () {
     this.table('projects', (table) => {
-      table.integer('project_category_id').unsigned().index();
-      table.foreign('project_category_id').references('id').inTable('project_categories').onDelete('cascade')
+      table.integer('psp_id').unsigned().index();
+      table.foreign('psp_id').references('id').inTable('psps').onDelete('cascade')
     })
   }
 
   down () {
     this.table('projects', (table) => {
-      table.dropColumn('project_category_id');
+      table.dropColumn('psp_id');
     })
   }
 }

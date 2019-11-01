@@ -10,8 +10,8 @@ class Project extends Model {
     company(){
         return this.belongsTo('App/Models/Company')
     }
-    projectCategory(){
-        return this.belongsTo('App/Models/ProjectCategory')
+    psp(){
+        return this.belongsTo('App/Models/Psp')
     }
 }
 
