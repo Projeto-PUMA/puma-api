@@ -32,6 +32,7 @@ Route.group(() => {
 
     Route.resource('psps', 'PspController').apiOnly();
     Route.resource('projects', 'ProjectController').apiOnly();
+    Route.resource('skills', 'SkillController').apiOnly();
     Route.put('projects/:id/status', 'ProjectController.updateStatus');
 
     Route.resource('roles', 'RoleController').apiOnly();

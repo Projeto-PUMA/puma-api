@@ -7,16 +7,16 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
- * Resourceful controller for interacting with pspCategories
+ * Resourceful controller for interacting with psp
  */
 const Psp = use('App/Models/Psp');
 
 class PspController {
   async index ({ request, response, view }) {
-    const pspCategories = await Psp.query().with('children').fetch();
-    const pspJson = pspCategories.toJSON();
+    const psp = await Psp.query().with('children').fetch();
+    const pspJson = psp.toJSON();
     const pspOnlyFathers = pspJson.filter(psp => psp.psp_id === null);
-    return response.ok({ pspCategories: pspOnlyFathers });
+    return response.ok({ psp: pspOnlyFathers });
   }
 
   async store ({ request, response }) {

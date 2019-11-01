@@ -11,7 +11,7 @@ class PostSchema extends Schema {
       table.text('content').notNullable();
       table.text('slug').notNullable();
       table.boolean('is_published').defaultTo(true);
-      table.enu('category', ['notícia', 'melhores projetos', 'divulgação de edital']).defaultTo('notícia').notNullable();
+      table.enu('category', ['noticia', 'melhores_projetos', 'edital']).defaultTo('noticia').notNullable();
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.timestamps(true, true)
     })
