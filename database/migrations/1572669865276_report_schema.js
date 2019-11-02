@@ -7,7 +7,10 @@ class ReportSchema extends Schema {
   up () {
     this.create('reports', (table) => {
       table.increments()
-      table.timestamps()
+      table.integer('team_id').unsigned().index()
+      table.foreign('team_id').references('id').on('courses').onDelete('set null')
+      table.string('url')
+      table.timestamps(true, true)
     })
   }
 
