@@ -11,3 +11,5 @@ tmp
 database/development.sqlite
 
 docs/db/*.vpp.*
+
+database/*.sqlite
