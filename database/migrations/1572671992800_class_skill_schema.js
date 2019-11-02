@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class ClassSkillSchema extends Schema {
   up () {
-    this.create('class_skill', (table) => {
+    this.create('classes_skills', (table) => {
       table.increments()
       table.integer('skill_id').unsigned().index()
       table.foreign('skill_id').references('id').on('students').onDelete('set null')
@@ -17,7 +17,7 @@ class ClassSkillSchema extends Schema {
   }
 
   down () {
-    this.drop('class_skill')
+    this.drop('classes_skills')
   }
 }
 
