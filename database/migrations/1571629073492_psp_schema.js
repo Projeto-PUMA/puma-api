@@ -9,8 +9,9 @@ class PspSchema extends Schema {
       table.increments()
       table.string('title')
       table.string('description')
-      table.integer('psp_id').unsigned().index();
-      table.foreign('psp_id').references('id').inTable('psps');
+      table.integer('psp_father_id').unsigned().index();
+      table.foreign('psp_father_id').references('id').inTable('psps');
+      table.string('slug')
       table.timestamps(true, true)
     })
   }

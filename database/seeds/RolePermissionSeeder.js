@@ -15,12 +15,12 @@ const Database = use('Database')
 
 class RolePermissionSeeder {
   static async run() {
-    await Database.table("roles_permissions").insert([
-      {
-        permission_id: 1,
-        role_id: 1
-      },
-    ]);
+    const allPermissions = await Database.select('*').from('permissions');
+    const admin = await Database.select('*').from('roles').where('slug', 'admin').first();
+    const adminPermissions = allPermissions.map(permission => {
+      return {role_id: admin.id, permission_id: permission.id}
+    })
+    await Database.table("roles_permissions").insert(adminPermissions);
   }
 }
 

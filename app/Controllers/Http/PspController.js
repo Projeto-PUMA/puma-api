@@ -15,12 +15,12 @@ class PspController {
   async index ({ request, response, view }) {
     const psp = await Psp.query().with('children').fetch();
     const pspJson = psp.toJSON();
-    const pspOnlyFathers = pspJson.filter(psp => psp.psp_id === null);
+    const pspOnlyFathers = pspJson.filter(psp => psp.psp_father_id === null);
     return response.ok({ psp: pspOnlyFathers });
   }
 
   async store ({ request, response }) {
-    const data = request.only(['title', 'description', 'psp_id']);
+    const data = request.only(['title', 'description', 'psp_father_id']);
     const psp = await Psp.create(data);
     return response.ok(psp)
   }
