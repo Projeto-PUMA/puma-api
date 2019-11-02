@@ -10,10 +10,10 @@ class ProjectSchema extends Schema {
       table.string('title').notNullable();
       table.text('description').notNullable();
       table.string('attachment_url');
-      table.enu('status', ['aguardando triagem', 'em triagem', 'atribuído', 'em andamento', 'finalizado']).defaultTo('aguardando triagem').notNullable();
+      table.enu('status', ['aguardando_triagem', 'em_triagem', 'atribuido', 'em_andamento', 'finalizado']).defaultTo('aguardando_triagem').notNullable();
       table.integer('user_id').unsigned().index();
       table.foreign('user_id').references('id').inTable('users').onDelete('cascade')
-      table.timestamps();
+      table.timestamps(true, true)
     })
   }
 

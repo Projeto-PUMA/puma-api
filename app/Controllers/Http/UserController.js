@@ -12,29 +12,11 @@
 const User = use('App/Models/User');
 
 class UserController {
-  /**
-   * Show a list of all users.
-   * GET users
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
   async index ({ request, response, view }) {
     const users = await User.all();
     return response.ok({ users });
   }
 
-  /**
-   * Display a single user.
-   * GET users/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
   async show ({ params, request, response }) {
     const { id } = params;
     const user = await User.findOrFail(id);
@@ -42,14 +24,6 @@ class UserController {
     return response.ok({ user });
   }
 
-  /**
-   * Update user details.
-   * PUT or PATCH users/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async update ({ params, request, response }) {
     const { id } = params;
     const data = request.only(['username', 'name', 'email', 'profession', 'education_level']);
@@ -60,14 +34,6 @@ class UserController {
     return response.ok({ user });
   }
 
-  /**
-   * Delete a user with id.
-   * DELETE users/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async destroy ({ params, response }) {
     const { id } = params;
     const user = await User.find(id);

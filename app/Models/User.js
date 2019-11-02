@@ -40,7 +40,7 @@ class User extends Model {
   }
 
   companies() {
-    return this.belongsToMany('App/Models/Company')
+    return this.belongsToMany('App/Models/Company').pivotTable('users_companies')
   }
 
   projects() {

@@ -30,7 +30,9 @@ Route.group(() => {
     Route.post('users/:id/roles', 'UserController.grantRoles');
     Route.delete('users/:id/roles', 'UserController.revokeRoles');
 
+    Route.resource('psps', 'PspController').apiOnly();
     Route.resource('projects', 'ProjectController').apiOnly();
+    Route.resource('skills', 'SkillController').apiOnly();
     Route.put('projects/:id/status', 'ProjectController.updateStatus');
 
     Route.resource('roles', 'RoleController').apiOnly();
