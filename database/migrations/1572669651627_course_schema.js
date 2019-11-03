@@ -8,7 +8,7 @@ class CourseSchema extends Schema {
     this.create('courses', (table) => {
       table.string('name')
       table.string('code')
-      table.integer('psp_id').unsigned().references('id').inTable('psp')
+      table.integer('psp_id').unsigned().references('id').inTable('psps')
       table.increments()
       table.timestamps(true, true)
     })

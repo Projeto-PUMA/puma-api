@@ -1,8 +1,8 @@
 {
   "name": "adonis-api-app",
-  "version": "4.1.0",
+  "version": "0.7.0",
   "adonis-version": "4.1.0",
-  "description": "Adonisjs boilerplate for API server with pre-configured JWT",
+  "description": "REST API to Project Puma",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -12,9 +12,12 @@
     "adonisjs",
     "adonis-app"
   ],
-  "author": "",
+  "author": "The Puma Team",
   "license": "UNLICENSED",
   "private": true,
+  "husky": {
+    "pre-commit": "echo teste"
+  },
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
     "@adonisjs/antl": "^2.0.7",
@@ -31,11 +34,12 @@
     "knex-stringcase": "^1.3.0",
     "moment": "^2.24.0",
     "pg": "^7.12.1",
-    "slugify": "^1.3.5",
-    "sqlite3": "^4.1.0"
+    "slugify": "^1.3.5"
   },
   "devDependencies": {
-    "shelljs": "^0.8.3"
+    "husky": "^3.0.9",
+    "shelljs": "^0.8.3",
+    "sqlite3": "^4.1.0"
   },
   "autoload": {
     "App": "./app"
