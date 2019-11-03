@@ -16,7 +16,14 @@
   "license": "UNLICENSED",
   "private": true,
   "husky": {
-    "pre-commit": "echo teste"
+    "hooks": {
+      "pre-commit": "echo teste"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
@@ -37,6 +44,9 @@
     "slugify": "^1.3.5"
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "husky": "^3.0.9",
     "shelljs": "^0.8.3",
     "sqlite3": "^4.1.0"
