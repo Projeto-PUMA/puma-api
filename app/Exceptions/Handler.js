@@ -1,6 +1,4 @@
-'use strict'
-
-const BaseExceptionHandler = use('BaseExceptionHandler')
+const BaseExceptionHandler = use('BaseExceptionHandler');
 
 /**
  * This class handles all exceptions thrown during
@@ -20,8 +18,8 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle (error, { request, response }) {
-    response.status(error.status).json({error: error.message})
+  async handle(error, { response }) {
+    response.status(error.status).json({ error: error.message });
   }
 
   /**
@@ -34,8 +32,10 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async report (error, { request }) {
+  // eslint-disable-next-line no-unused-vars
+  async report(error, { request }) {
+    // todo
   }
 }
 
-module.exports = ExceptionHandler
+module.exports = ExceptionHandler;

@@ -1,5 +1,3 @@
-"use strict";
-
 /*
 |--------------------------------------------------------------------------
 | RoleSeeder
@@ -11,7 +9,7 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Database')} */
-const Database = use('Database')
+const Database = use('Database');
 
 class RoleSeeder {
   static async run() {
@@ -20,27 +18,32 @@ class RoleSeeder {
         name: 'admin',
         slug: 'admin',
         description: 'the admin',
-      }, {
+      },
+      {
         name: 'coordenador',
         slug: 'coordenador',
         description: 'the coordenador',
-      }, {
+      },
+      {
         name: 'user',
         slug: 'user',
         description: 'the user',
-      }, {
+      },
+      {
         name: 'professor',
         slug: 'professor',
         description: 'the professor',
-      }, {
+      },
+      {
         name: 'monitor',
         slug: 'monitor',
         description: 'the monitor',
-      }, {
+      },
+      {
         name: 'project owner',
         slug: 'project_owner',
         description: 'the project owner',
-      }
+      },
     ]);
   }
 }

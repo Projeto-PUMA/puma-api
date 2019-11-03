@@ -1,5 +1,3 @@
-'use strict'
-
 /*
 |--------------------------------------------------------------------------
 | Providers
@@ -21,7 +19,7 @@ const providers = [
   '@adonisjs/antl/providers/AntlProvider',
   '@adonisjs/framework/providers/ViewProvider',
   '@rocketseat/adonis-acl/providers/AclProvider',
-]
+];
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +33,7 @@ const providers = [
 const aceProviders = [
   '@adonisjs/lucid/providers/MigrationsProvider',
   '@rocketseat/adonis-acl/providers/CommandsProvider',
-]
+];
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +47,7 @@ const aceProviders = [
 |   { Route: 'Adonis/Src/Route' }
 |
 */
-const aliases = {
-}
+const aliases = {};
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +57,6 @@ const aliases = {
 | Here you store ace commands for your package
 |
 */
-const commands = [
-  'App/Commands/DatabaseRebuild',
-]
+const commands = ['App/Commands/DatabaseRebuild'];
 
-module.exports = { providers, aceProviders, aliases, commands }
+module.exports = { providers, aceProviders, aliases, commands };

@@ -1,21 +1,25 @@
-'use strict'
-
-const Schema = use('Schema')
+const Schema = use('Schema');
 
 class PermissionSchema extends Schema {
-  up () {
+  up() {
     this.create('permissions', table => {
-      table.increments()
-      table.string('slug').notNullable().unique()
-      table.string('name').notNullable().unique()
-      table.text('description').nullable()
-      table.timestamps(true, true)
-    })
+      table.increments();
+      table
+        .string('slug')
+        .notNullable()
+        .unique();
+      table
+        .string('name')
+        .notNullable()
+        .unique();
+      table.text('description').nullable();
+      table.timestamps(true, true);
+    });
   }
 
-  down () {
-    this.drop('permissions')
+  down() {
+    this.drop('permissions');
   }
 }
 
-module.exports = PermissionSchema
+module.exports = PermissionSchema;

@@ -1,5 +1,3 @@
-'use strict'
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -14,32 +12,32 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
+const Route = use('Route');
 
 Route.group(() => {
-    Route.post('login', 'AuthController.login');
-    Route.post('confirmation', 'AuthController.confirmation');
-    Route.post('forgotPassword', 'AuthController.forgotPassword');
-    Route.post('register', 'AuthController.register').validator('Register');
-    Route.post('resetPassword', 'AuthController.resetPassword');
+  Route.post('login', 'AuthController.login');
+  Route.post('confirmation', 'AuthController.confirmation');
+  Route.post('forgotPassword', 'AuthController.forgotPassword');
+  Route.post('register', 'AuthController.register').validator('Register');
+  Route.post('resetPassword', 'AuthController.resetPassword');
 }).prefix('api/v1/auth');
 
 Route.group(() => {
-    Route.resource('users', 'UserController').apiOnly();
-    Route.get('users/:id/roles', 'UserController.showRoles');
-    Route.post('users/:id/roles', 'UserController.grantRoles');
-    Route.delete('users/:id/roles', 'UserController.revokeRoles');
+  Route.resource('users', 'UserController').apiOnly();
+  Route.get('users/:id/roles', 'UserController.showRoles');
+  Route.post('users/:id/roles', 'UserController.grantRoles');
+  Route.delete('users/:id/roles', 'UserController.revokeRoles');
 
-    Route.resource('psps', 'PspController').apiOnly();
-    Route.resource('projects', 'ProjectController').apiOnly();
-    Route.resource('skills', 'SkillController').apiOnly();
-    Route.put('projects/:id/status', 'ProjectController.updateStatus');
+  Route.resource('psps', 'PspController').apiOnly();
+  Route.resource('projects', 'ProjectController').apiOnly();
+  Route.resource('skills', 'SkillController').apiOnly();
+  Route.put('projects/:id/status', 'ProjectController.updateStatus');
 
-    Route.resource('roles', 'RoleController').apiOnly();
-    Route.post('roles/:id/permissions', 'RoleController.grantPermissions');
-    Route.delete('roles/:id/permissions', 'RoleController.revokePermissions');
-    Route.post('roles/:id/membership', 'RoleController.membership');
-    Route.get('roles/:id/membership', 'RoleController.showMembers');
+  Route.resource('roles', 'RoleController').apiOnly();
+  Route.post('roles/:id/permissions', 'RoleController.grantPermissions');
+  Route.delete('roles/:id/permissions', 'RoleController.revokePermissions');
+  Route.post('roles/:id/membership', 'RoleController.membership');
+  Route.get('roles/:id/membership', 'RoleController.showMembers');
 
-    Route.resource('permissions', 'PermissionController').apiOnly();
+  Route.resource('permissions', 'PermissionController').apiOnly();
 }).prefix('api/v1');

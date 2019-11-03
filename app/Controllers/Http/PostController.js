@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 
-'use strict';
-
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -12,25 +10,31 @@
 const Post = use('App/Models/Post');
 
 class PostController {
-  async index ({ response }) {
+  async index({ response }) {
     const posts = await Post.all();
     return response.ok({ posts });
   }
 
-  async store ({ request, response }) {
-    const data = request.only(['title', 'subheading', 'body' ,'user_id', 'category']);
+  async store({ request, response }) {
+    const data = request.only([
+      'title',
+      'subheading',
+      'body',
+      'user_id',
+      'category',
+    ]);
     const post = await Post.create(data);
-    return response.ok({ post })
+    return response.ok({ post });
   }
 
-  async show ({ params, response }) {
+  async show({ params, response }) {
     const { id } = params;
     const post = await Post.findOrFail(id);
 
     return response.ok({ post });
   }
 
-  async update ({ params, request, response }) {
+  async update({ params, request, response }) {
     const { id } = params;
     const data = request.only(['title', 'subheading', 'body', 'category']);
     const post = await Post.findOrFail(id);
@@ -40,7 +44,7 @@ class PostController {
     return response.ok({ post });
   }
 
-  async destroy ({ params, response }) {
+  async destroy({ params, response }) {
     const { id } = params;
     const post = await Post.find(id);
     await post.delete();

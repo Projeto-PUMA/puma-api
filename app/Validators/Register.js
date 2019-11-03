@@ -1,16 +1,15 @@
-'use strict';
-
 const Antl = use('Antl');
 
 class Register {
-  get validateAll () {
+  get validateAll() {
     return true;
   }
 
-  get rules () {
+  get rules() {
     return {
       username: `string|required|unique:users,username`,
-      education_level: 'in:superior completo, superior incompleto, medio completo, medio incompleto, fundamental completo, fundamental incompleto|required',
+      education_level:
+        'in:superior completo, superior incompleto, medio completo, medio incompleto, fundamental completo, fundamental incompleto|required',
       profession: 'string|required',
       name: 'string|required',
       email: `required|email|unique:users,email`,
@@ -18,11 +17,11 @@ class Register {
     };
   }
 
-  get messages () {
+  get messages() {
     return Antl.list('validation');
   }
 
-  async fails (errorMessages) {
+  async fails(errorMessages) {
     return this.ctx.response.status(422).json({ errors: errorMessages });
   }
 }

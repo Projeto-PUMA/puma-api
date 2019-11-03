@@ -21,7 +21,6 @@ hooks.after.providersBooted(() => {
 
   Validator.extend('double', doubleFn);
 
-
   const checkDatetimeFormat = async (data, field, message, args, get) => {
     const value = get(data, field);
 
@@ -38,7 +37,6 @@ hooks.after.providersBooted(() => {
 
   Validator.extend('checkDatetimeFormat', checkDatetimeFormat);
 
-
   const existsFn = async (data, field, message, args, get) => {
     const value = get(data, field);
     if (!value) {
@@ -50,7 +48,9 @@ hooks.after.providersBooted(() => {
     }
 
     const [table, column] = args;
-    const row = await Database.table(table).where(column, value).first();
+    const row = await Database.table(table)
+      .where(column, value)
+      .first();
 
     if (!row) {
       throw message;

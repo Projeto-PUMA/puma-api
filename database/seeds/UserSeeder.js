@@ -1,5 +1,3 @@
-"use strict";
-
 /*
 |--------------------------------------------------------------------------
 | UserSeeder
@@ -11,8 +9,8 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Database')} */
-const Database = use("Database");
-const Hash = use("Hash");
+const Database = use('Database');
+const Hash = use('Hash');
 
 class UserSeeder {
   /*
@@ -22,33 +20,33 @@ class UserSeeder {
   |  easier to read and write.
   */
   static async run() {
-    const encryptedPassword = await Hash.make("123456");
+    const encryptedPassword = await Hash.make('123456');
 
-    await Database.table("users").insert([
+    await Database.table('users').insert([
       {
-        username: "coordenador",
-        name: "coordenador",
-        email: "coordendor@email.com",
-        education_level: "superior completo",
-        profession: "professor",
-        password: encryptedPassword
+        username: 'coordenador',
+        name: 'coordenador',
+        email: 'coordendor@email.com',
+        education_level: 'superior completo',
+        profession: 'professor',
+        password: encryptedPassword,
       },
       {
-        username: "admin",
-        name: "admin",
-        email: "admin@email.com",
-        education_level: "superior completo",
-        profession: "professor",
-        password: encryptedPassword
+        username: 'admin',
+        name: 'admin',
+        email: 'admin@email.com',
+        education_level: 'superior completo',
+        profession: 'professor',
+        password: encryptedPassword,
       },
       {
-        username: "user",
-        name: "user",
-        email: "user@email.com",
-        education_level: "superior completo",
-        profession: "professor",
-        password: encryptedPassword
-      }
+        username: 'user',
+        name: 'user',
+        email: 'user@email.com',
+        education_level: 'superior completo',
+        profession: 'professor',
+        password: encryptedPassword,
+      },
     ]);
   }
 }

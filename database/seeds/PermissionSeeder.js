@@ -1,5 +1,3 @@
-"use strict";
-
 /*
 |--------------------------------------------------------------------------
 | PermissionSeeder
@@ -11,12 +9,12 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Database')} */
-const Database = use('Database')
+const Database = use('Database');
 
 class PermissionSeeder {
   static async run() {
     const timestamp = new Date();
-    await Database.table("permissions").insert([
+    await Database.table('permissions').insert([
       {
         name: 'Create Users',
         slug: 'create_users',
@@ -116,7 +114,7 @@ class PermissionSeeder {
         name: 'Read psp',
         slug: 'read_psp',
         description: 'read_psp',
-      }
+      },
     ]);
   }
 }
